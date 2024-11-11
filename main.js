@@ -50,9 +50,10 @@ while(isNaN(opcionElegida)){
 switch(opcionElegida){
     case 1 :
         let deuda = consultaDeuda(); 
-        alert("Su consumo es de $" + deuda); 
+        alert("Su consumo es de $" + valor); 
         break;
          default: alert("Opción no válida.");
+         opcionElegida = parseInt(prompt("Ingrese la opción: " + menu));
          break
 
     case 2 :   
@@ -62,9 +63,6 @@ switch(opcionElegida){
  
         }
  
-
-    
-
 
 
  
