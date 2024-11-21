@@ -43,45 +43,46 @@ function eliminar (){
    
 }
 
+
+
+
 //funcion para consultar deuda
-function consultaDeuda(opcionElegida){
-    let deuda = parseFloat(prompt("ingrese cantidad de litros"))
-    
-    let precioTotal;
-    
+function litros(){
+    let deuda = parseFloat(prompt("ingrese cantidad de litros"));
     while(isNaN(deuda)){
-       alert("datos invalidos");
-       deuda = parseInt(prompt("ingrese cantidad de litros"));
-       break
-       }
-    if (deuda >= 0  && deuda <= 25 ){
-      return valor;
-   }
-else if(deuda >= 26  && deuda <= 30 ){
-       const excedente = deuda - 25;
-       const valorExcedente = excedente * 385;
-       let precioTotal = valor + valorExcedente;
-       return precioTotal;
-   }
-else if(deuda >= 31  && deuda <= 50 ){
-       const excedente = deuda - 25;
-       const valorExcedente = excedente * 770;
-       let precioTotal = valor + valorExcedente;
-       return precioTotal;
-   }
-else if(deuda >= 51  && deuda < 81 ){
-       const excedente = deuda - 25;
-       const valorExcedente = excedente * 1926;
-       let precioTotal = valor + valorExcedente;
-      return precioTotal;
-   }
-else if(deuda >= 81  && deuda < 500 ){
-       const excedente = deuda - 25;
-       const valorExcedente = excedente * 2697;
-       let precioTotal = valor + valorExcedente;
-      return precioTotal;
-   }
-   return precioTotal ;
+        alert("dato ingresado invalido")
+        deuda = parseFloat(prompt("ingrese cantidad de litros"));
+    }
+    return deuda;
+}
+
+// funcion para calcular valor o excedente
+function calcularExcedente(deuda) {
+    const escalas = [
+        { min: 0, max: 25, multiplicador: 0 },
+        { min: 26, max: 30, multiplicador: 385 },
+        { min: 31, max: 50, multiplicador: 770 },
+        { min: 51, max: 80, multiplicador: 1926 },
+        { min: 81, max: 499, multiplicador: 2697 },
+    ];
+
+    return escalas.reduce((total, rango) => {
+        if (deuda > rango.min) {
+            const exceso = Math.min(deuda, rango.max) - rango.min;
+            total = exceso * rango.multiplicador;
+        }
+        return total;
+    }, 0);
+}
+
+// funcion para saber el valor total
+ function consumo()
+ { 
+    const valor = 9635
+    const cantidadLitros = litros();
+    const excedente = calcularExcedente(cantidadLitros);
+    const consumoTotal = valor + excedente;
+    return consumoTotal;
 }
 
 
@@ -89,7 +90,7 @@ else if(deuda >= 81  && deuda < 500 ){
 //INICIO PROGRAMA
 const menu = "1-Agregar Usuario, 2-Calcular consumo, 3-Darse de baja,  0- Salir";
 const opcionElegida = parseInt(prompt("Ingrese la opción: " + menu));
-const valor = 9635
+//const valor = 9635
 let usuario = [ 
     new Usuario ("marina" , "cabrera"),
     new Usuario ("debora" , "olguin"),
@@ -108,12 +109,9 @@ switch(opcionElegida){
     break;
 
     case 2 :
-        let deuda = consultaDeuda(); 
-        alert("Su consumo es de $" + deuda); 
+        let precioFinal = consumo(); 
+        alert("Su consumo es de $" + precioFinal); 
         break;
-         default: alert("Opción no válida.");
-         opcionElegida = parseInt(prompt("Ingrese la opción: " + menu));
-         break
 
     case 3 : eliminar ();
     
@@ -125,5 +123,9 @@ switch(opcionElegida){
  
         opcionElegida = parseInt(prompt("Ingrese la opción: " + menu));
         }
- 
+
+
+        
+
+
  
