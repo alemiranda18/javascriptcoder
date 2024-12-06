@@ -1,14 +1,20 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Calculador de Consumo de Agua</title>
 </head>
 <body>
-    <h1>este es el curso de javascript en coder house</h1>
-    <h2> pre entrega n°1</h2>
+    <form id="formulario">
+        <input type="text" id="nombre" placeholder="Nombre">
+        <input type="text" id="barrio" placeholder="Barrio">
+        <input type="number" id="litros" placeholder="Litros Consumidos">
+        <button type="button" onclick="guardarDatos()">consultar</button>
+    </form>
+    <div id="resultado"></div>
+
     <script src="main.js"></script>
 </body>
 </html>
